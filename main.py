@@ -17,7 +17,7 @@ async def on_message(message):  #this triggers when a message shows that ISNT th
     if msg.startswith('?help'):
         await message.channel.send("say 'who asked' in your message")
 
-    if "who" in msg and "asked" in msg: #checks to see if who AND asked are in the same string message
+    if "who" in msg.lower() and "asked" in msg.lower(): #checks to see if who AND asked are in the same string message
         await message.channel.send("i did")
 
 client.run(os.getenv('TOKEN'))
