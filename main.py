@@ -3,15 +3,9 @@ import os
 
 client = discord.Client()
 
-theOriginalMeme = ["who asked"]
-theTwistedOne = ["i asked"]
-
-
 @client.event  #these 'events' are to listen for stuff that happens
-async def on_ready(
-):  #this is for when the bot successfully logs on the first time
+async def on_ready():  #this is for when the bot successfully logs on the first time
     print('We have logged in as {0.user}'.format(client))
-
 
 @client.event
 async def on_message(message):  #this triggers when a message shows that ISNT the bot itself
@@ -23,11 +17,7 @@ async def on_message(message):  #this triggers when a message shows that ISNT th
     if msg.startswith('?help'):
         await message.channel.send("say 'who asked' in your message")
 
-    if any(word in msg.lower() for word in theOriginalMeme):
+    if "who" in msg and "asked" in msg: #checks to see if who AND asked are in the same string message
         await message.channel.send("i did")
-
-    if any(word in msg.lower() for word in theTwistedOne):
-        await message.channel.send("you too? :flushed:")
-
 
 client.run(os.getenv('TOKEN'))
